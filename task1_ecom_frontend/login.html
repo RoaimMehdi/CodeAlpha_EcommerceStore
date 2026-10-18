@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Sign In — Threadly</title>
+  <meta name="description" content="Sign in to your Threadly account to access order tracking, member exclusives, and rapid checkout.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Threadly Homepage">
+        Threadly<span class="logo-dot">.</span>
+        <span class="brand-subtext">Clothing Hub</span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop All</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="register.html" class="btn btn-outline btn-sm">Create Account</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-page-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="section-subtitle">Welcome Back</span>
+        <h2>Sign In to Threadly</h2>
+        <p>Access your curated wardrobe preferences and tracking.</p>
+      </div>
+
+      <!-- Feedback Alert Box -->
+      <div id="auth-alert" class="auth-alert"></div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username-input" class="form-label">Username or Email Address <span class="required">*</span></label>
+          <input type="text" id="username-input" class="form-control" placeholder="Enter username or email" autocomplete="username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password-input" class="form-label">Password <span class="required">*</span></label>
+          <input type="password" id="password-input" class="form-control" placeholder="••••••••" autocomplete="current-password" required>
+        </div>
+
+        <button id="login-submit-btn" type="submit" class="btn btn-primary btn-block" style="margin-top: 1.5rem; padding: 0.95rem;">
+          Sign In
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Don't have an account yet? <a href="register.html">Create one now</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container text-center">
+      <div style="font-size: 0.82rem; color: #71717a;">
+        &copy; 2026 Threadly Clothing Co. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/cart.js"></script>
+</body>
+</html>

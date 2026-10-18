@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout & Finalize Order — Threadly</title>
+  <meta name="description" content="Secure checkout for Threadly fashion apparel. Complete your shipping destination for Cash on Delivery dispatch.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Threadly Homepage">
+        Threadly<span class="logo-dot">.</span>
+        <span class="brand-subtext">Clothing Hub</span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop All</a>
+        <a href="orders.html" class="nav-link">My Orders</a>
+      </nav>
+
+      <div class="header-actions">
+        <div id="navbar-auth-section">
+          <!-- Populated by auth.js -->
+        </div>
+
+        <a href="cart.html" class="icon-btn" title="Shopping Bag" aria-label="Shopping Bag">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span class="cart-badge" style="display: none;">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div style="background-color: var(--bg-muted); padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <a href="cart.html">Shopping Bag</a>
+          <span>/</span>
+          <span style="color: var(--text-main); font-weight: 600;">Checkout</span>
+        </nav>
+        <h1>Secure Checkout</h1>
+        <p>Enter your delivery destination and confirm your order.</p>
+      </div>
+    </div>
+
+    <section class="checkout-section">
+      <div class="container">
+        <div class="checkout-grid">
+          <!-- Left Column: Shipping & Payment Form -->
+          <div>
+            <form id="checkout-form" class="checkout-form-box">
+              <div id="checkout-error-alert" class="auth-alert error"></div>
+
+              <h3>1. Shipping Information</h3>
+              <div class="form-grid">
+                <div class="form-group full-width">
+                  <label for="shipping-name" class="form-label">Recipient Full Name <span class="required">*</span></label>
+                  <input type="text" id="shipping-name" class="form-control" placeholder="e.g. Sophia Laurent" required>
+                </div>
+
+                <div class="form-group full-width">
+                  <label for="shipping-address" class="form-label">Delivery Street Address <span class="required">*</span></label>
+                  <input type="text" id="shipping-address" class="form-control" placeholder="Apartment, suite, street address" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="shipping-city" class="form-label">City / District <span class="required">*</span></label>
+                  <input type="text" id="shipping-city" class="form-control" placeholder="e.g. New York, London, Paris" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="shipping-phone" class="form-label">Phone Contact <span class="required">*</span></label>
+                  <input type="tel" id="shipping-phone" class="form-control" placeholder="+1 (555) 019-2834" required>
+                </div>
+              </div>
+
+              <h3 style="margin-top: 2.5rem;">2. Payment Method</h3>
+              <div class="payment-method-card">
+                <input type="radio" id="payment-cod" name="payment_method" value="COD" checked>
+                <div>
+                  <label for="payment-cod" class="payment-method-title">Cash on Delivery (COD)</label>
+                  <p class="payment-method-desc">Pay directly in cash when our courier arrives with your delivery. No upfront online transaction required.</p>
+                </div>
+              </div>
+
+              <button id="place-order-btn" type="submit" class="btn btn-primary btn-block" style="margin-top: 2rem; padding: 1.1rem;">
+                Place Order &rarr;
+              </button>
+            </form>
+          </div>
+
+          <!-- Right Column: Order Summary Review -->
+          <aside class="summary-card" aria-label="Order Items Summary">
+            <h3 class="summary-title">Order Review</h3>
+
+            <div id="checkout-items-list">
+              <!-- Rendered via checkout.js -->
+            </div>
+
+            <div class="summary-row" style="margin-top: 1.5rem;">
+              <span>Subtotal</span>
+              <span id="checkout-subtotal" class="font-accent" style="font-weight: 600;">$0.00</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Standard Courier Delivery</span>
+              <span id="checkout-shipping" class="font-accent">FREE</span>
+            </div>
+
+            <div class="summary-row total-row">
+              <span>Total Payable</span>
+              <span id="checkout-total" class="total-amount">$0.00</span>
+            </div>
+
+            <div style="background-color: var(--bg-muted); padding: 1rem; border-radius: var(--radius-sm); margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">
+              <strong>Guaranteed Authentic:</strong> Threadly garments are inspected by our quality artisans prior to dispatch.
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Celebratory Order Success Modal -->
+  <div id="order-success-modal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-success-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Order Confirmed!</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
+        Thank you for choosing Threadly. Your order has been placed into our fulfillment pipeline.
+      </p>
+
+      <div style="background: var(--bg-muted); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; text-align: left; font-size: 0.88rem;">
+        <div><strong>Order Reference:</strong> <span id="modal-order-number" style="color: var(--accent); font-weight: 700;">TH-000000</span></div>
+        <div style="margin-top: 0.4rem;"><strong>Payment:</strong> Cash on Delivery</div>
+        <div style="margin-top: 0.4rem; color: var(--text-muted); font-size: 0.8rem;" id="modal-shipping-summary"></div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="orders.html" class="btn btn-primary btn-sm">View Order History</a>
+        <a href="shop.html" class="btn btn-outline btn-sm">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <div>&copy; 2026 Threadly Clothing Co. All rights reserved.</div>
+        <div>Secure 256-Bit SSL Checkout</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/cart.js"></script>
+  <script type="module" src="js/checkout.js"></script>
+</body>
+</html>

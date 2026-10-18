@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Shopping Bag — Threadly</title>
+  <meta name="description" content="Review your selected Threadly items, update quantities, apply coupon codes, and proceed to secure checkout.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Threadly Homepage">
+        Threadly<span class="logo-dot">.</span>
+        <span class="brand-subtext">Clothing Hub</span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop All</a>
+        <a href="shop.html?gender=Men" class="nav-link">Men</a>
+        <a href="shop.html?gender=Women" class="nav-link">Women</a>
+        <a href="shop.html?category=outerwear" class="nav-link">Outerwear</a>
+        <a href="orders.html" class="nav-link">My Orders</a>
+      </nav>
+
+      <div class="header-actions">
+        <div id="navbar-auth-section">
+          <a href="login.html" class="btn btn-outline btn-sm" style="border-radius: var(--radius-full);">Sign In</a>
+        </div>
+
+        <a href="cart.html" class="icon-btn" title="Shopping Bag" aria-label="Shopping Bag">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span class="cart-badge" style="display: none;">0</span>
+        </a>
+
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Open Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-modal="true">
+    <div class="mobile-drawer-content">
+      <button id="mobile-drawer-close" class="mobile-drawer-close" aria-label="Close Navigation Menu">&times;</button>
+      <div class="brand-logo" style="margin-bottom: 1rem;">
+        Threadly<span class="logo-dot">.</span>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop All</a>
+        <a href="shop.html?gender=Men">Men's Wardrobe</a>
+        <a href="shop.html?gender=Women">Women's Wardrobe</a>
+        <a href="orders.html">Order History</a>
+        <a href="cart.html">Shopping Bag</a>
+        <a href="login.html">Sign In / Register</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <div style="background-color: var(--bg-muted); padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <span style="color: var(--text-main); font-weight: 600;">Shopping Bag</span>
+        </nav>
+        <h1>Your Shopping Bag</h1>
+        <p>Review and finalize your chosen pieces.</p>
+      </div>
+    </div>
+
+    <section class="cart-section">
+      <div class="container">
+        <!-- Empty State Container -->
+        <div id="cart-empty-state" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+          </div>
+          <h3>Your shopping bag is currently empty</h3>
+          <p>Explore our latest seasonal arrivals and build your intentional capsule wardrobe.</p>
+          <a href="shop.html" class="btn btn-primary" style="margin-top: 1rem;">Explore Collection &rarr;</a>
+        </div>
+
+        <!-- Populated Cart Layout -->
+        <div id="cart-content-wrapper" class="cart-layout">
+          <!-- Left: Items Table -->
+          <div class="cart-table-card">
+            <table class="cart-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="cart-items-container">
+                <!-- Dynamically rendered via cart.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Right: Order Summary -->
+          <aside class="summary-card" aria-label="Order Summary">
+            <h3 class="summary-title">Summary</h3>
+
+            <div class="summary-row">
+              <span>Bag Subtotal</span>
+              <span id="summary-subtotal" class="font-accent" style="font-weight: 600;">$0.00</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Estimated Shipping</span>
+              <span id="summary-shipping" class="font-accent">FREE</span>
+            </div>
+
+            <div id="summary-discount-row" class="summary-row" style="display: none; color: var(--accent);">
+              <span>Promo Discount (10%)</span>
+              <span id="summary-discount" class="font-accent">-$0.00</span>
+            </div>
+
+            <form id="coupon-form" class="promo-form">
+              <input type="text" id="coupon-input" class="promo-input" placeholder="Coupon Code (e.g. THREADLY10)">
+              <button type="submit" class="btn btn-secondary btn-sm">Apply</button>
+            </form>
+
+            <div class="summary-row total-row">
+              <span>Total</span>
+              <span id="summary-total" class="total-amount">$0.00</span>
+            </div>
+
+            <a href="checkout.html" class="btn btn-primary btn-block" style="margin-top: 1.5rem; padding: 1rem;">
+              Proceed to Checkout &rarr;
+            </a>
+
+            <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-light); line-height: 1.5; text-align: center;">
+              Free delivery on orders over $150. Cash on delivery available.
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">Threadly<span class="logo-dot">.</span></a>
+          <p class="footer-desc">
+            A contemporary clothing hub focused on architectural silhouettes, premium natural textiles, and ethical craftsmanship.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Collections</h4>
+          <ul class="footer-links">
+            <li><a href="shop.html">All Apparel</a></li>
+            <li><a href="shop.html?gender=Men">Men's Capsule</a></li>
+            <li><a href="shop.html?gender=Women">Women's Capsule</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="orders.html">Track Order</a></li>
+            <li><a href="cart.html">Shopping Bag</a></li>
+            <li><a href="orders.html">Returns & Exchanges</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Threadly Hub</h4>
+          <ul class="footer-links">
+            <li><a href="login.html">Sign In</a></li>
+            <li><a href="register.html">Create Account</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Threadly Clothing Co. All rights reserved.</div>
+        <div>Curated elegance for every season.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/cart.js"></script>
+</body>
+</html>

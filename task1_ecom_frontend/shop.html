@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Collections — Threadly Apparel</title>
+  <meta name="description" content="Explore Threadly's full clothing catalog. Filter by category, gender, size, color, and price. Free delivery on orders over $150.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Threadly Homepage">
+        Threadly<span class="logo-dot">.</span>
+        <span class="brand-subtext">Clothing Hub</span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link active">Shop All</a>
+        <a href="shop.html?gender=Men" class="nav-link">Men</a>
+        <a href="shop.html?gender=Women" class="nav-link">Women</a>
+        <a href="shop.html?category=outerwear" class="nav-link">Outerwear</a>
+        <a href="orders.html" class="nav-link">My Orders</a>
+      </nav>
+
+      <div class="header-actions">
+        <div id="navbar-auth-section">
+          <a href="login.html" class="btn btn-outline btn-sm" style="border-radius: var(--radius-full);">Sign In</a>
+        </div>
+
+        <a href="cart.html" class="icon-btn" title="Shopping Bag" aria-label="Shopping Bag">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span class="cart-badge" style="display: none;">0</span>
+        </a>
+
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Open Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-modal="true">
+    <div class="mobile-drawer-content">
+      <button id="mobile-drawer-close" class="mobile-drawer-close" aria-label="Close Navigation Menu">&times;</button>
+      <div class="brand-logo" style="margin-bottom: 1rem;">
+        Threadly<span class="logo-dot">.</span>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop All</a>
+        <a href="shop.html?gender=Men">Men's Wardrobe</a>
+        <a href="shop.html?gender=Women">Women's Wardrobe</a>
+        <a href="orders.html">Order History</a>
+        <a href="cart.html">Shopping Bag</a>
+        <a href="login.html">Sign In / Register</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <!-- Banner & Breadcrumbs -->
+    <section class="shop-header-banner">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <span style="color: var(--text-main); font-weight: 600;">Shop Collections</span>
+        </nav>
+        <h1>All Collections</h1>
+        <p>Curated garments tailored from architectural silhouettes and sustainable fibers.</p>
+      </div>
+    </section>
+
+    <!-- Main Catalog Layout -->
+    <div class="container shop-layout">
+      <!-- Filter Sidebar -->
+      <aside class="filter-sidebar" aria-label="Catalog Filters">
+        <div class="filter-header-top">
+          <h3>Filters</h3>
+          <button id="reset-filters-btn" class="filter-reset-btn" type="button">Reset All</button>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-group">
+          <div class="filter-title">Category</div>
+          <div id="category-filter-list" class="filter-options-list">
+            <label class="filter-checkbox-label">
+              <input type="radio" name="category-filter" value="" checked>
+              <span>All Categories</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Gender Filter -->
+        <div class="filter-group">
+          <div class="filter-title">Gender</div>
+          <div class="filter-options-list">
+            <label class="filter-checkbox-label">
+              <input type="radio" name="gender-filter" value="" checked>
+              <span>All Genders</span>
+            </label>
+            <label class="filter-checkbox-label">
+              <input type="radio" name="gender-filter" value="Men">
+              <span>Men's Collection</span>
+            </label>
+            <label class="filter-checkbox-label">
+              <input type="radio" name="gender-filter" value="Women">
+              <span>Women's Collection</span>
+            </label>
+            <label class="filter-checkbox-label">
+              <input type="radio" name="gender-filter" value="Unisex">
+              <span>Unisex Essentials</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="filter-group">
+          <div class="filter-title">Price Range ($)</div>
+          <div class="price-range-inputs">
+            <div class="price-input-box">
+              <span>$</span>
+              <input type="number" id="min-price-input" placeholder="Min" min="0">
+            </div>
+            <span style="color: var(--text-light);">&ndash;</span>
+            <div class="price-input-box">
+              <span>$</span>
+              <input type="number" id="max-price-input" placeholder="Max" min="0">
+            </div>
+          </div>
+          <button id="apply-price-btn" class="btn btn-secondary btn-sm btn-block" style="margin-top: 0.85rem;">Apply Price</button>
+        </div>
+
+        <!-- Size Filter -->
+        <div class="filter-group">
+          <div class="filter-title">Size</div>
+          <div class="size-chips-grid">
+            <button type="button" class="size-chip" data-size="XS">XS</button>
+            <button type="button" class="size-chip" data-size="S">S</button>
+            <button type="button" class="size-chip" data-size="M">M</button>
+            <button type="button" class="size-chip" data-size="L">L</button>
+            <button type="button" class="size-chip" data-size="XL">XL</button>
+            <button type="button" class="size-chip" data-size="XXL">XXL</button>
+          </div>
+        </div>
+
+        <!-- Color Filter -->
+        <div class="filter-group">
+          <div class="filter-title">Color Palette</div>
+          <div class="color-swatches-grid">
+            <button type="button" class="color-swatch-filter" data-color="Black" style="background-color: #18181b;" title="Black"></button>
+            <button type="button" class="color-swatch-filter" data-color="White" style="background-color: #ffffff; border: 1px solid #d4d4d8;" title="White"></button>
+            <button type="button" class="color-swatch-filter" data-color="Camel" style="background-color: #c19a6b;" title="Camel"></button>
+            <button type="button" class="color-swatch-filter" data-color="Oatmeal" style="background-color: #e3dac9;" title="Oatmeal"></button>
+            <button type="button" class="color-swatch-filter" data-color="Charcoal" style="background-color: #36454f;" title="Charcoal"></button>
+            <button type="button" class="color-swatch-filter" data-color="Navy" style="background-color: #1e293b;" title="Navy"></button>
+            <button type="button" class="color-swatch-filter" data-color="Olive" style="background-color: #556b2f;" title="Olive"></button>
+            <button type="button" class="color-swatch-filter" data-color="Champagne" style="background-color: #fad6a5;" title="Champagne"></button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Products Content -->
+      <section class="shop-content-area">
+        <!-- Top Toolbar -->
+        <div class="shop-toolbar">
+          <div class="shop-search-box">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input type="text" id="shop-search-input" placeholder="Search by name, fabric, style..." aria-label="Search collection">
+          </div>
+
+          <div class="shop-toolbar-right">
+            <span id="results-count" class="text-muted" style="font-size: 0.88rem;">Loading products...</span>
+            <div class="sort-select-wrapper">
+              <label for="shop-sort-select">Sort:</label>
+              <select id="shop-sort-select" class="sort-select">
+                <option value="">Featured</option>
+                <option value="price">Price: Low to High</option>
+                <option value="-price">Price: High to Low</option>
+                <option value="name">Product Name (A-Z)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div id="shop-products-grid" class="products-grid">
+          <!-- Populated by shop.js -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <nav id="shop-pagination" class="pagination-container" aria-label="Catalog pages">
+          <!-- Dynamic pagination buttons -->
+        </nav>
+      </section>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">Threadly<span class="logo-dot">.</span></a>
+          <p class="footer-desc">
+            A contemporary clothing hub focused on architectural silhouettes, premium natural textiles, and ethical craftsmanship.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Collections</h4>
+          <ul class="footer-links">
+            <li><a href="shop.html">All Apparel</a></li>
+            <li><a href="shop.html?gender=Men">Men's Capsule</a></li>
+            <li><a href="shop.html?gender=Women">Women's Capsule</a></li>
+            <li><a href="shop.html?category=outerwear">Outerwear</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="orders.html">Track Order</a></li>
+            <li><a href="cart.html">Shopping Bag</a></li>
+            <li><a href="orders.html">Returns & Exchanges</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Threadly Hub</h4>
+          <ul class="footer-links">
+            <li><a href="login.html">Sign In</a></li>
+            <li><a href="register.html">Create Account</a></li>
+            <li><a href="index.html#featured">Featured Drops</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Threadly Clothing Co. All rights reserved.</div>
+        <div>Curated elegance for every season.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/cart.js"></script>
+  <script type="module" src="js/shop.js"></script>
+</body>
+</html>

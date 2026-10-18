@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Threadly — Register Account</title>
+  <meta name="description" content="Create a Threadly account for exclusive capsule access, order history, and tailored sizing recommendations.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Threadly Homepage">
+        Threadly<span class="logo-dot">.</span>
+        <span class="brand-subtext">Clothing Hub</span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop All</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-page-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="section-subtitle">Become a Member</span>
+        <h2>Create an Account</h2>
+        <p>Join Threadly for private drops and streamlined ordering.</p>
+      </div>
+
+      <!-- Feedback Alert Box -->
+      <div id="auth-alert" class="auth-alert"></div>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label for="reg-username" class="form-label">Username <span class="required">*</span></label>
+          <input type="text" id="reg-username" class="form-control" placeholder="Choose a unique username" autocomplete="username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-email" class="form-label">Email Address <span class="required">*</span></label>
+          <input type="email" id="reg-email" class="form-control" placeholder="name@domain.com" autocomplete="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-password" class="form-label">Password <span class="required">*</span></label>
+          <input type="password" id="reg-password" class="form-control" placeholder="Min. 6 characters" autocomplete="new-password" required minlength="6">
+        </div>
+
+        <div class="form-group">
+          <label for="reg-confirm-password" class="form-label">Confirm Password <span class="required">*</span></label>
+          <input type="password" id="reg-confirm-password" class="form-control" placeholder="Re-enter password" autocomplete="new-password" required minlength="6">
+        </div>
+
+        <button id="register-submit-btn" type="submit" class="btn btn-primary btn-block" style="margin-top: 1.5rem; padding: 0.95rem;">
+          Create Account
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="login.html">Sign In</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container text-center">
+      <div style="font-size: 0.82rem; color: #71717a;">
+        &copy; 2026 Threadly Clothing Co. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/cart.js"></script>
+</body>
+</html>
